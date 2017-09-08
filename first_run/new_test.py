@@ -48,7 +48,8 @@ def mag2_to_img2(img1_tot_flux, mag1, mag2):
     return img2_tot_flux
 
 
-if __name__ == '__main__':
+@profile
+def main():
     bsz = 9.0
     nnn = 900
     dsx = bsz/nnn
@@ -181,10 +182,12 @@ if __name__ == '__main__':
                     + str(limg_cat[2]) + "_" \
                     + str(mag_tot) + "_full.fits"
 
-    pyfits.writeto(fits_out, fimage)
+    pyfits.writeto(fits_out, fimage, overwrite=True)
     # print mag_tot
     # pl.figure()
     # pl.contourf(np.log10(fimage))
     # pl.colorbar()
 
+if __name__ == '__main__':
+    main()
     pl.show()
